@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import GameDetail from '../components/GameDetail';
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,17 +15,17 @@ const Home = () => {
   //get the current location
   const location = useLocation();
   const pathId = location.pathname.split('/')[2];
+  const [isLoading, setLoading] = useState(false);
 
   //FETCH GAMES
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadGames());
+    dispatch(loadGames(setLoading));
   }, [dispatch]);
   //Get that data back
   const { popular, newGames, upcoming, searched } = useSelector(
     (state) => state.games
   );
-
   return (
     <GameList variants={fadeIn} initial="hidden" animate="show">
       <AnimateSharedLayout type="crossfade">
@@ -52,27 +52,35 @@ const Home = () => {
         )}
         <h2>Upcoming Games</h2>
         <Games>
-          {upcoming.map((game) => (
-            <Game
-              name={game.name}
-              released={game.released}
-              id={game.id}
-              image={game.background_image}
-              key={game.id}
-            />
-          ))}
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            upcoming.map((game) => (
+              <Game
+                name={game.name}
+                released={game.released}
+                id={game.id}
+                image={game.background_image}
+                key={game.id}
+              />
+            ))
+          )}
         </Games>
         <h2>Popular Games</h2>
         <Games>
-          {popular.map((game) => (
-            <Game
-              name={game.name}
-              released={game.released}
-              id={game.id}
-              image={game.background_image}
-              key={game.id}
-            />
-          ))}
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            popular.map((game) => (
+              <Game
+                name={game.name}
+                released={game.released}
+                id={game.id}
+                image={game.background_image}
+                key={game.id}
+              />
+            ))
+          )}
         </Games>
         <h2>New Games</h2>
         <Games>
