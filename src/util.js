@@ -1,6 +1,9 @@
 //MEdia resize
 
 export const smallImage = (imagePath, size) => {
+  if(imagePath === null){
+    return 'https://i.stack.imgur.com/EMMpP.png';
+  }
   const image = imagePath.match(/media\/screenshots/)
     ? imagePath.replace(
         "media/screenshots",
