@@ -153,6 +153,13 @@ const Detail = styled(motion.div)`
 const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
+  text-align: center;
+  @media only screen and (min-width: 310px) {
+    flex-direction: column;
+  }
+  @media only screen and (min-width: 540px) {
+    flex-direction: row;
+  }
   justify-content: space-between;
   img {
     width: 2rem;
@@ -168,6 +175,11 @@ const Platforms = styled(motion.div)`
   justify-content: space-evenly;
   img {
     margin-left: 3rem;
+  }
+  @media only screen and (min-width: 320px) {
+    img {
+      margin-left: 1rem;
+    }
   }
 `;
 
