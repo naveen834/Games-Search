@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import GameDetail from '../components/GameDetail';
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,17 +10,17 @@ import { useLocation } from 'react-router-dom';
 import { fadeIn } from '../animations';
 import Game from '../components/Game';
 //Components
+const games = loadGames();
 
 const Home = () => {
   //get the current location
   const location = useLocation();
   const pathId = location.pathname.split('/')[2];
-  const [isLoading, setLoading] = useState(false);
 
   //FETCH GAMES
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadGames(setLoading));
+    dispatch(loadGames());
   }, [dispatch]);
   //Get that data back
   const { popular, newGames, upcoming, searched } = useSelector(
@@ -52,10 +52,7 @@ const Home = () => {
         )}
         <h2>Upcoming Games</h2>
         <Games>
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : (
-            upcoming.map((game) => (
+          {upcoming.map((game) => (
               <Game
                 name={game.name}
                 released={game.released}
@@ -64,14 +61,11 @@ const Home = () => {
                 key={game.id}
               />
             ))
-          )}
+         }
         </Games>
         <h2>Popular Games</h2>
         <Games>
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : (
-            popular.map((game) => (
+          {popular.map((game) => (
               <Game
                 name={game.name}
                 released={game.released}
@@ -80,7 +74,7 @@ const Home = () => {
                 key={game.id}
               />
             ))
-          )}
+         }
         </Games>
         <h2>New Games</h2>
         <Games>
