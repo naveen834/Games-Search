@@ -9,9 +9,8 @@ import {
 
 //Action Creator
 
-export const loadGames = (setLoading) => async (dispatch) => {
+export const loadGames = () => async (dispatch) => {
   //FETCH AXIOS
-  setLoading(true);
   const popularData = axios.get(popularGamesURL());
   const newGamesData = axios.get(newGamesURL());
   const upcomingData = axios.get(upcomingGamesURL());
@@ -25,7 +24,6 @@ export const loadGames = (setLoading) => async (dispatch) => {
           newGames: responses[1].data.results,
         },
       });
-      setLoading(false);
     })
   );
 };
