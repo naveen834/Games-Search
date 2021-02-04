@@ -101,7 +101,6 @@ const GameList = styled(motion.div)`
 `;
 
 const Games = styled(motion.div)`
-  min-height: 80vh;
   display: grid;
   @media only screen and (min-width: 540px) {
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
