@@ -1,11 +1,11 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 //Components and pages
 //Styles
 import GlobalStyles from './components/GlobalStyles';
 //Router
 import { Route } from 'react-router-dom';
 import Nav from './components/Nav';
-const Home = React.lazy(() => import('./pages/Home'));
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -13,11 +13,7 @@ function App() {
       <GlobalStyles />
       <Route path={['/game/:id', '/']}>
         <Nav />
-        <Suspense fallback={<div>Loading...</div>}>
-          <section>
-            <Home />
-          </section>
-        </Suspense>
+        <Home />
       </Route>
     </div>
   );
