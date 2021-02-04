@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 import { fadeIn } from '../animations';
 import Game from '../components/Game';
 //Components
-const games = loadGames();
+const games = loadGames(0);
 
 const Home = () => {
   //get the current location
