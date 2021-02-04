@@ -20,7 +20,7 @@ const Home = () => {
   //FETCH GAMES
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadGames());
+    dispatch(games);
   }, [dispatch]);
   //Get that data back
   const { popular, newGames, upcoming, searched } = useSelector(
