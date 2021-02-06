@@ -11,24 +11,20 @@ import { loadGames } from './actions/gamesAction';
 import { useDispatch } from 'react-redux';
 
 function App() {
-  return (
-    <div className="App">
-      <GlobalStyles />
-      <Route path={['/game/:id', '/']}>
-        <Nav />
-        <HomeDef />
-      </Route>
-    </div>
-  );
-}
-
-function HomeDef() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadGames(setLoading));
   }, [dispatch]);
-  return <Home loading={loading} />;
+  return (
+    <div className="App">
+      <GlobalStyles />
+      <Route path={['/game/:id', '/']}>
+        <Nav />
+        <Home loading={loading}/>
+      </Route>
+    </div>
+  );
 }
 
 export default App;
