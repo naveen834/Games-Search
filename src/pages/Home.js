@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import GameDetail from '../components/GameDetail';
 //Redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 //Styling and Animation
 import styled from 'styled-components';
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import { fadeIn } from '../animations';
 import Game from '../components/Game';
-//Components
-import { loadGames } from '../actions/gamesAction';
 
-const Home = () => {
+const Home = ({ loading }) => {
   //get the current location
   const location = useLocation();
   const pathId = location.pathname.split('/')[2];
-  const [loading, setLoading] = useState(false);
-
-  //FETCH GAMES
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadGames(setLoading));
-  }, [dispatch]);
-  //Get that data back
   const { popular, newGames, upcoming, searched } = useSelector(
     (state) => state.games
   );
