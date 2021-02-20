@@ -123,8 +123,7 @@ const Loading = styled(motion.div)`
   left: 0;
   display: grid;
   place-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  color: red;
+  color: white;
   font-weight: 700;
   letter-spacing: 2px;
 `;
