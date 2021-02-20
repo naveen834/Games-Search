@@ -16,7 +16,6 @@ import gamepad from '../img/gamepad.svg';
 //Star Images
 import starEmpty from '../img/star-empty.png';
 import starFull from '../img/star-full.png';
-
 const GameDetail = ({ pathId }) => {
   const history = useHistory();
 
@@ -64,7 +63,9 @@ const GameDetail = ({ pathId }) => {
   const { screen, game, isLoading } = useSelector((state) => state.detail);
   return (
     <>
-      {!isLoading && (
+      {isLoading ? (
+        <Loading>loading...</Loading>
+      ) : (
         <CardShadow className="shadow" onClick={exitDetailHander}>
           <Detail layoutId={pathId}>
             <Stats>
@@ -113,6 +114,20 @@ const GameDetail = ({ pathId }) => {
   );
 };
 
+const Loading = styled(motion.div)`
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: red;
+  font-weight: 700;
+  letter-spacing: 2px;
+`;
 const CardShadow = styled(motion.div)`
   width: 100%;
   min-height: 100vh;
