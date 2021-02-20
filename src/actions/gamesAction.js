@@ -6,7 +6,6 @@ import {
   newGamesURL,
   searchGameURL,
 } from '../api';
-
 //Action Creator
 
 export const loadGames = (setLoading) => async (dispatch) => {
@@ -30,7 +29,8 @@ export const loadGames = (setLoading) => async (dispatch) => {
   );
 };
 
-export const fetchSearch = (game_name) => async (dispatch) => {
+export const fetchSearch = (game_name, isLoading) => async (dispatch) => {
+  isLoading(true);
   const searchGames = axios.get(searchGameURL(game_name));
   await axios.all([searchGames]).then(
     axios.spread((...responses) => {
@@ -40,6 +40,7 @@ export const fetchSearch = (game_name) => async (dispatch) => {
           searched: responses[0].data.results,
         },
       });
+      isLoading(false);
     })
   );
 };
