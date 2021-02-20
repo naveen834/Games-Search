@@ -43,7 +43,7 @@ const Home = ({ loading }) => {
         <h2>Upcoming Games</h2>
         <Games>
           {loading ? (
-            <div>loading...</div>
+            <Loading>loading...</Loading>
           ) : (
             upcoming.map((game) => (
               <Game
@@ -58,35 +58,27 @@ const Home = ({ loading }) => {
         </Games>
         <h2>Popular Games</h2>
         <Games>
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            popular.map((game) => (
-              <Game
-                name={game.name}
-                released={game.released}
-                id={game.id}
-                image={game.background_image}
-                key={game.id}
-              />
-            ))
-          )}
+          {popular.map((game) => (
+            <Game
+              name={game.name}
+              released={game.released}
+              id={game.id}
+              image={game.background_image}
+              key={game.id}
+            />
+          ))}
         </Games>
         <h2>New Games</h2>
         <Games>
-          {loading ? (
-            <div>loading...</div>
-          ) : (
-            newGames.map((game) => (
-              <Game
-                name={game.name}
-                released={game.released}
-                id={game.id}
-                image={game.background_image}
-                key={game.id}
-              />
-            ))
-          )}
+          {newGames.map((game) => (
+            <Game
+              name={game.name}
+              released={game.released}
+              id={game.id}
+              image={game.background_image}
+              key={game.id}
+            />
+          ))}
         </Games>
       </AnimateSharedLayout>
     </GameList>
@@ -110,6 +102,19 @@ const Games = styled(motion.div)`
   @media only screen and (max-width: 310px) {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
+`;
+const Loading = styled(motion.div)`
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 2px;
 `;
 
 export default Home;
